@@ -1,0 +1,3 @@
+./DS_STORE
+rm -rf ./DS_STORE
+./Challenges/node_modules

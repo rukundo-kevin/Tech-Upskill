@@ -1,24 +1,40 @@
 {
-  "todos": [
+  "posts": [
     {
-      "title": "Study Maths",
-      "completed": false,
-      "id": 9
-    },
-    {
-      "title": "no t er",
-      "completed": false,
-      "id": 10
-    },
-    {
-      "title": "common sense",
-      "completed": false,
-      "id": 11
-    },
-    {
-      "title": "Go to church",
-      "completed": false,
-      "id": 12
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
     }
-  ]
+  ],
+  "users": [
+    {
+      "email": "demouser2@cod.be",
+      "password": "$2a$10$e9ZuLp0y6ll18.qHZJcXiOSogQCdEUr1BOwH5CCWgoALsWQv6tyeq",
+      "id": 1
+    },
+    {
+      "email": "demouser@cod.be",
+      "password": "$2a$10$ukGfTy2Loye.Jims8oD4p.gN5HOSy5Xzz7zboxlxtF5Gulov1utrW",
+      "id": 2
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$6BYYp5XM3xKNuE0ezbJPuePpxs6BFwlI59pbStwPsHoOw0.enRqj6",
+      "role": "employee",
+      "id": 3
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "todo":[   {
+    "id": "1",
+    "title": "Refine models",
+    "completed": false
+  },
+  {
+    "id": "1",
+    "title": "Centralize logic",
+    "completed": false
+  }]
 }

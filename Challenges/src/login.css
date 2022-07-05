@@ -1,0 +1,133 @@
+
+* {
+    box-sizing: border-box;
+  }
+  
+  div.error{
+    padding: 1em;
+    border-left: .8em solid red;
+    margin: 3px;
+    background-color: #eee;
+    font-weight: 600;
+    font-size: 15px;
+    border-bottom-left-radius: 1em;
+    border-top-left-radius: 1em;
+    display: none;
+  }
+  
+  .container {
+    grid-column: 5/9;
+    background-color: #fff;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    padding: 20px 40px;
+    border-radius: 5px;
+    margin: 2em 3em 9em 3em;
+    min-height: 30vh;
+  }
+  
+  .container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .container a {
+    text-decoration: none;
+    color: rgb(9, 56, 71);
+  }
+  
+  
+  .btn {
+    cursor: pointer;
+    color: white;
+    font-weight: bolder;
+    display: inline-block;
+    width: 100%;
+    background: #0080A9;
+    padding: 15px;
+    font-family: inherit;
+    font-size: 18px;
+    border: 0;
+    border-radius: 5px;
+  }
+  
+  .btn:focus {
+    outline: 0;
+  }
+  
+  .btn:active {
+    transform: scale(0.98);
+  }
+  .btn:hover{
+    background-color: #30a1c7;
+  }
+  .text {
+    margin-top: 30px;
+  }
+  
+  .form-control {
+    position: relative;
+    margin: 20px 0 40px;
+  }
+  
+  .form-control input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px #333 solid;
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .form-control input:focus {
+    outline: 0;
+    border-bottom-color: #0080A9;
+  }
+  
+  .form-control label {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    pointer-events: none;
+  }
+  
+  .form-control label span {
+    display: inline-block;
+    font-size: 18px;
+    min-width: 5px;
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .form-control input:focus + label span{
+    color: steelblue;
+    transform: translateY(-20px);
+  }
+  
+  .form-valid{
+    color: steelblue;
+    transform: translateY(-1px);
+  }
+  
+  p.text a{
+    color: #0080A9;
+  }
+  @media only screen and (min-width: 768px) and (max-width: 1020px){
+    .container{
+      grid-column: 3/11;
+    }
+  }
+  
+  /* Change some css properties  when screen less than 768px */
+  @media only screen and (max-width: 760px) {
+     body{
+      justify-content: flex-start;
+      margin: 1em;
+      min-height: 50vh;
+     }
+     .container{
+       padding:10px 20px;
+       grid-column: 1/-1;
+       box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+     }
+  }

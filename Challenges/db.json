@@ -1,0 +1,26 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "users": [
+    {
+      "email": "rukundo@gmail.com",
+      "password": "$2a$10$yQv7Gs/a1DBV0G.G/DjoiuIvup7aPx3N1Py9ahPnc8OllpTjQE5pC",
+      "role": "employee",
+      "id": 3
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$RK8GdfnHGzvR87c62yNf9u.l6Hsh3ifouF4AaV65VChMxv6r5ByH6",
+      "role": "employee",
+      "id": 4
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

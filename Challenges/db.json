@@ -8,16 +8,28 @@
   ],
   "users": [
     {
+      "id": 3,
       "email": "rukundo@gmail.com",
       "password": "$2a$10$yQv7Gs/a1DBV0G.G/DjoiuIvup7aPx3N1Py9ahPnc8OllpTjQE5pC",
-      "role": "employee",
-      "id": 3
+      "role": "employee"
     },
     {
+      "id": 4,
       "email": "admin@gmail.com",
       "password": "$2a$10$RK8GdfnHGzvR87c62yNf9u.l6Hsh3ifouF4AaV65VChMxv6r5ByH6",
-      "role": "employee",
-      "id": 4
+      "role": "employee"
+    }
+  ],
+  "todo": [
+    {
+      "id": 3,
+      "title": "rukundo@gmail.com",
+      "completed": "false"
+    },
+    {
+      "id": 4,
+      "title": "admin@gmail.com",
+      "completed": "false"
     }
   ],
   "profile": {

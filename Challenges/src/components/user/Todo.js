@@ -47,7 +47,7 @@ const Todo = () => {
 
   const handeleDblClick = (newTodo) => {
     updateTodo(newTodo, true);
-    todo == "" ? setTodo("  ") : setTodo("");
+    todo === "" ? setTodo("  ") : setTodo("");
   };
 
   const updateTitle = (e) => {
@@ -69,7 +69,7 @@ const Todo = () => {
       false
     );
     setError("");
-    todo == "" ? setTodo("  ") : setTodo("");
+    todo === "" ? setTodo("  ") : setTodo("");
   };
 
   return (
@@ -81,7 +81,7 @@ const Todo = () => {
           </div>
         )}
         <form action="#" className="" method="post" id="contact-form">
-          <div className="form-item">
+          <div className=" w-1/3">
             <Input
               key="todoInput"
               handleChange={handleChange}
@@ -93,11 +93,10 @@ const Todo = () => {
               type="text"
               isRequired={true}
               placeholder="Enter new to do"
-              customStyle=" w-1/2"
+              customStyle=""
             />
-          </div>
-
           <FormAction handleSubmit={handleClick} text="Add New Task" />
+          </div>
         </form>
         <div className="todoContainer">
           {todos.length !== 0 ? (

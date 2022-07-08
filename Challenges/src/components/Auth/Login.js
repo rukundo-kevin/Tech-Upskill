@@ -18,7 +18,7 @@ fields.forEach((field) => {
 
 const Login = () => {
   const [loginState, setLoginState] = useState(fieldsState);
-  const { error, isAuth, token , userData} = useSelector((state) => state.user);
+  const { error, isAuth} = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const Login = () => {
       <div className="max-w-md w-full space-y-8 border p-8 rounded shadow-sm bg-white">
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="">
-            <Header heading="Login to Flashcards" />
+            <Header heading="Login to employees" />
 
             {error && <Alert message={error} heading="Error" variant="error" />}
             {fields.map((field) => (

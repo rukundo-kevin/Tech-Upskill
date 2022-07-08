@@ -12,7 +12,12 @@ const initialState = {
 const todosSlicer = createSlice({
   name: 'todos',
   initialState,
-  reducers: {},
+  reducers: {
+    addTodoFail: (state, payload) => {
+      state.loading = false;
+      state.error = payload;
+    },
+  },
   extraReducers: {
     [getTodos.pending]: (state) => {
       state.loading = true;
@@ -30,4 +35,5 @@ const todosSlicer = createSlice({
   },
 });
 
+export const {addTodoFail} = todosSlicer.actions;
 export default todosSlicer.reducer;

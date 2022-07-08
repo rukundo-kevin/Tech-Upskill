@@ -1,47 +1,44 @@
 import React, { useEffect, useState } from "react";
-import * as Todos from "../../api/todoApi";
-import { todoColumns } from "../../constants/tableColumns";
+import { useDispatch, useSelector } from 'react-redux';
 
+import { todoColumns } from "../../constants/tableColumns";
+import { updateTodo, removeTodo, addNewTodo } from "../../api/todoApi";
+import { addTodoFail } from "../../redux/features/todo.slice";
 import { FormAction, Input } from "../Auth/";
 import Table from "../reusable/Table";
 
+import { getTodos } from "../../api/todoApi";
+
 const Todo = () => {
-  const [todos, addTodos] = useState([]);
-  const [error, setError] = useState("");
   const [todo, setTodo] = useState("");
+  const {todos, error } = useSelector(state=> state.todo);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+      dispatch(getTodos());
+  }, [todo]);
 
   const handleChange = (e) => {
     setTodo(e.target.value);
   };
 
-  useEffect(() => {
-    const getTodoList = async () => {
-      const t = await getTodos();
-      addTodos(t);
-    };
-    getTodoList();
-  }, [todo]);
 
   const handleClick = (e) => {
     e.preventDefault();
     if (!todo) {
-      setError("Todo empty");
-      return;
+      return dispatch(addTodoFail("Todo empty"));
     }
-    !error && addNewTodo(todo);
-    // !error && addTodos([...todos, {text: todo, completed: false}]);
-    setTodo("");
-    setError("");
+    !error && addNewTodo(todo);  
   };
 
-  const handleRemove = (e) => {
-    const id = e.target.parentNode.parentNode.id;
-    const newTodos = todos.filter((todo, index) => index !== +id);
-    addTodos(newTodos);
-    removeTodo(id);
-    setTodo("");
-    alert("Task Deleted Successfully");
-  };
+  // const handleRemove = (e) => {
+  //   const id = e.target.parentNode.parentNode.id;
+  //   const newTodos = todos.filter((todo, index) => index !== +id);
+  //   addTodos(newTodos);
+  //   removeTodo(id);
+  //   setTodo("");
+  //   alert("Task Deleted Successfully");
+  // };
 
   const handeleDblClick = (newTodo) => {
     updateTodo(newTodo, true);
@@ -52,7 +49,7 @@ const Todo = () => {
     const id = e.target.parentNode.parentNode.id;
     const newTitle = prompt("Enter New Title");
     if (newTitle && newTitle.length < 3) {
-      return setError("Title too short");
+      return dispatch(addTodoFail("Title too short"));
     }
     let newTodo = todos.filter((todo) => todo.id === +id)[0];
     newTodo = newTodo ? { ...newTodo, title: newTitle } : undefined;
@@ -66,7 +63,6 @@ const Todo = () => {
           },
       false
     );
-    setError("");
     todo === "" ? setTodo("  ") : setTodo("");
   };
 
@@ -79,7 +75,7 @@ const Todo = () => {
           </div>
         )}
         <form action="#" className="" method="post" id="contact-form">
-          <div className=" w-1/3">
+          <div className=" w-1/3 sm:w-full md:w-1/3 xl:w-1/4">
             <Input
               key="todoInput"
               handleChange={handleChange}

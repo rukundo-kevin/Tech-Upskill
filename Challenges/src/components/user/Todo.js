@@ -5,8 +5,6 @@ import { todoColumns } from "../../constants/tableColumns";
 import { FormAction, Input } from "../Auth/";
 import Table from "../reusable/Table";
 
-const { addNewTodo, getTodos, getTodo, removeTodo, updateTodo } = Todos;
-
 const Todo = () => {
   const [todos, addTodos] = useState([]);
   const [error, setError] = useState("");

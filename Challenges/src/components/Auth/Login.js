@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import jwtDecode from "jwt-decode";
+import { useDispatch, useSelector } from 'react-redux';
 
 import { FormAction, Input, Alert, FormExtra, Header } from "./";
 
@@ -19,15 +18,16 @@ fields.forEach((field) => {
 
 const Login = () => {
   const [loginState, setLoginState] = useState(fieldsState);
-  const [error, setError] = useState("");
+  const { error, isAuth, token , userData} = useSelector((state) => state.user);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     setTimeout(() => {
-      if (localStorage.getItem("AUTH_TOKEN")) return navigate("/");
+     if (isAuth) return navigate('/dashboard');
     }, 300);
-  }, []);
+  }, [isAuth]);
 
   const handleChange = (e) => {
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
@@ -35,19 +35,9 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(loginState)
-      .then((res) => {
-        localStorage.setItem("AUTH_TOKEN", res.accessToken);
-        localStorage.setItem("userEmail", res.user.email);
-        navigate("/dashboard");
-      })
-      .catch((err) => {
-        if (err.response.data) {
-          setError(err.response.data);
-        } else {
-          setError(err.message);
-        }
-      });
+    const { email, password } = loginState;
+     dispatch(login({ email, password }));
+     return navigate("/dashboard");
   };
 
   return (

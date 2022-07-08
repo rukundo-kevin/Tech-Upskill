@@ -11,7 +11,6 @@ export const register = async ({ name, email, password }) => {
     password,
     role: "employee",
   });
-  console.log(response.data);
   return response.data;
 };
 

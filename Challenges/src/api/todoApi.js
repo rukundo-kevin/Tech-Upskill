@@ -1,9 +1,21 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from ".";
 
-export const getTodos = async () => {
-  const response = await api.get("/todo");
-  return response.data.slice(0, 10);
-};
+export const getTodos = createAsyncThunk(
+  'todos/fetchAll',
+  async (thunkAPI, { rejectWithValue }) => {
+    try {
+      const response = await api.get("/todo");
+      return response.data.slice(0, 10);
+    } catch (error) {
+      if (error.responseponse.data !== undefined) {
+        return rejectWithValue(error.responseponse.data);
+      }
+      return rejectWithValue({ message: error.message });
+    }
+  }
+);
+
 
 export const getTodo = async (id) => {
   const response = await api.get(`/todo/${id}`);

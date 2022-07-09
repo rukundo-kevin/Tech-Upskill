@@ -45,10 +45,11 @@ export const login = createAsyncThunk('user/login',async({email, password}, {rej
 export const getUsers = createAsyncThunk('user/getAll', async(thunkApi, {rejectWithValue})=>{
   try {
     const response = await api.get("/users");
+    response.data.forEach(el => delete el['password']);
     return response.data;
   } catch (error) {
     if (error.response.data !== undefined) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue({message:error.response.data});
     }
     return rejectWithValue({ message: error });   
   }

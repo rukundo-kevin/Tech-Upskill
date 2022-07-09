@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 
 import { FormAction, Input, Alert, FormExtra, Header } from "./";
 
@@ -14,14 +15,15 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export const Signup = () => {
   const [signupState, setSignupState] = useState(fieldsState);
-  const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const { error, isAuth} = useSelector((state) => state.user);
 
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     setTimeout(() => {
-      if (message.length > 1) return navigate("../login");
+      if (localStorage.getItem("AUTH_TOKEN")) return navigate("../login");
     }, 300);
   }, [message]);
 
@@ -32,21 +34,11 @@ export const Signup = () => {
     e.preventDefault();
     const { username, email, password, confirmPassword } = signupState;
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      dispatch("Passwords do not match");
       return;
     }
     register({ username, email, password })
-      .then((res) => {
-        localStorage.setItem("AUTH_TOKEN", res.accessToken);
-        navigate("/dashboard");
-      })
-      .catch((err) => {
-        if (err.response.data) {
-          setError(err.response.data);
-        } else {
-          setError(err.message);
-        }
-      });
+
   };
 
   return (

@@ -7,14 +7,12 @@ import Button from "../reusable/Button";
 import Table from "../reusable/Table";
 
 const Employee = () => {
-  const [employees, setEmployee] = React.useState([]);
-
+  const {employees} = useSelector(state=>state.user)
   const dispatch = useDispatch();
+  
   useEffect(() => {
       dispatch(getUsers());
-  }, [ dispatch]);
-
-  console.log(employees);
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col p-4">

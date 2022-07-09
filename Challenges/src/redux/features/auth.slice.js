@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, getusers } from '../../api';
+import { register, login, getUsers } from '../../api';
 
 const initialState = {
   isLoading: false,
@@ -7,6 +7,7 @@ const initialState = {
   userData: {},
   token:"",
   isAuth: false,
+  employees:[]
 };
 
 
@@ -16,6 +17,19 @@ const userSlice = createSlice({
   reducers: {
   },
   extraReducers: {
+    [getUsers.pending]: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
+    [getUsers.fulfilled]: (state, action) => {
+      state.employees = action.payload;
+      state.loading = false;
+      state.error = '';
+    },
+    [getUsers.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
     [register.pending]: (state) => {
       state.loading = true;
       state.error = '';

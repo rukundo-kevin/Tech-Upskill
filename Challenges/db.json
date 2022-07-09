@@ -22,20 +22,16 @@
   ],
   "todo": [
     {
-      "title": "kevin",
-      "completed": false,
-      "id": 5
-    },
-    {
-      "title": "another one",
-      "isCompleted": false,
-      "id": 6
-    },
-    {
-      "title": "new one",
       "isCompleted": false,
       "employee": "rukundo@gmail.com",
-      "id": 7
+      "title": null,
+      "id": 8
+    },
+    {
+      "isCompleted": false,
+      "employee": "rukundo@gmail.com",
+      "title": null,
+      "id": 9
     }
   ],
   "profile": {

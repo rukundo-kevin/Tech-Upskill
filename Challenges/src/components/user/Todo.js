@@ -11,7 +11,7 @@ import { getTodos } from "../../api/todoApi";
 
 const Todo = () => {
   const [todo, setTodo] = useState("");
-  const {todos, error, addSuccess } = useSelector(state=> state.todo);
+  const {todos, error, addSuccess, message } = useSelector(state=> state.todo);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -33,28 +33,19 @@ const Todo = () => {
   const handleRemove = (e) => {
     const {id} = e.target;
    dispatch(removeTodo(id));
-   alert("Task Deleted Successfully");
   };
 
   const handleUpdate = (e) => {
-    const id = e.target.parentNode.parentNode.id;
+    const {id} = e.target;
     const newTitle = prompt("Enter New Title");
-    if (newTitle && newTitle.length < 3) {
+    if (newTitle && newTitle.length < 3 ) {
       return dispatch(addTodoFail("Title too short"));
     }
-    let newTodo = todos.filter((todo) => todo.id === +id)[0];
-    newTodo = newTodo ? { ...newTodo, title: newTitle } : undefined;
-    updateTodo(
-      newTodo
-        ? newTodo
-        : {
-            title: "Updated todo",
-            completed: true,
-            id: 10,
-          },
-      false
-    );
-    todo === "" ? setTodo("  ") : setTodo("");
+    if (newTitle === null) {
+       return ;
+    }
+    console.log(newTitle === null);
+     return dispatch(updateTodo({id, title:newTitle}));
   };
 
   return (
@@ -62,6 +53,9 @@ const Todo = () => {
       <div className=" w-full space-y-8 border p-8 rounded shadow-sm bg-white">
         {error && (
           <Alert message={error.payload} variant="error" heading="Error"/>
+        )}
+        {message && (
+          <Alert message={message} variant="success" heading="Success"/>
         )}
         <form onSubmit={handleClick}>
           <div className=" w-1/3 sm:w-full md:w-1/3 xl:w-1/4">

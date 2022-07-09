@@ -1,12 +1,13 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getTodos, addNewTodo, removeTodo } from '../../api/todoApi';
+import { getTodos, addNewTodo, removeTodo, updateTodo } from '../../api/todoApi';
 const initialState = {
   todos: [],
   loading: false,
   error: '',
   addSuccess: false,
+  message: ""
 };
 
 const todosSlicer = createSlice({
@@ -35,30 +36,53 @@ const todosSlicer = createSlice({
     [addNewTodo.pending]: (state) => {
       state.loading = true;
       state.error = '';
+      state.message = "";
     },
     [addNewTodo.fulfilled]: (state, action) => {
       state.loading = false;
       state.error = '';
       state.addSuccess = !state.addSuccess;
+      state.message = "New todo added successfully";
     },
     [addNewTodo.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload.message;
       state.addSuccess = false;
+      state.message = "";
     },
     [removeTodo.pending]: (state) => {
       state.loading = true;
       state.error = '';
+      state.message = "";
     },
     [removeTodo.fulfilled]: (state, action) => {
       state.loading = false;
       state.error = '';
       state.addSuccess = !state.addSuccess;
+      state.message = "Todo removed successfully"
     },
     [removeTodo.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload.message;
       state.addSuccess = false;
+      state.message = "";
+    },
+    [updateTodo.pending]: (state) => {
+      state.loading = true;
+      state.error = '';
+      state.message = "";
+    },
+    [updateTodo.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.error = '';
+      state.addSuccess = !state.addSuccess;
+      state.message = "Todo updated successfully"
+    },
+    [updateTodo.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+      state.addSuccess = false;
+      state.message = "";
     },
   },
 });

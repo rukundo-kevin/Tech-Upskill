@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+
 import { getUsers } from "../../api";
 import { employeeColumns } from "../../constants/tableColumns";
 import Button from "../reusable/Button";
@@ -7,13 +9,10 @@ import Table from "../reusable/Table";
 const Employee = () => {
   const [employees, setEmployee] = React.useState([]);
 
+  const dispatch = useDispatch();
   useEffect(() => {
-    const getEmployeeList = async () => {
-      const t = await getUsers();
-      setEmployee(t);
-    };
-    getEmployeeList();
-  }, []);
+      dispatch(getUsers());
+  }, [ dispatch]);
 
   console.log(employees);
 

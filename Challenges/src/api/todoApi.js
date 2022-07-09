@@ -23,7 +23,7 @@ export const getTodo = async (id) => {
   return response.data;
 };
 
-export const addNewTodo = createAsyncThunk('todos/addNew', async (todo, {rejectWithValue}) =>{
+export const addNewTodo = createAsyncThunk('todos/add', async (todo, {rejectWithValue}) =>{
  try {
   const response = await api.post("/todo", {
     title: todo,
@@ -39,7 +39,7 @@ export const addNewTodo = createAsyncThunk('todos/addNew', async (todo, {rejectW
  }
 } )
 
-export const removeTodo = createAsyncThunk('todos/addNew', async (id, {rejectWithValue}) =>{
+export const removeTodo = createAsyncThunk('todos/remove', async (id, {rejectWithValue}) =>{
   try {
     const response = await api.delete(`/todo/${id}`);
     return id;
@@ -51,15 +51,23 @@ export const removeTodo = createAsyncThunk('todos/addNew', async (id, {rejectWit
   }
  } )
 
-export const updateTodo = async (todo, changeCompleted) => {
-  const { id, completed, title } = todo;
-  console.log(title);
-  const response = await api.put(`/todo/${id}`, {
-    title,
-    completed: changeCompleted ? !completed : completed,
-  });
-  return response.data;
-};
+ export const updateTodo = createAsyncThunk('todos/update', async ({id, title}, {rejectWithValue}) =>{
+  try {
+    const todo = await getTodo(id);
+    const {isCompleted, employee, id:todoId} = todo;
+    const response = await api.put(`/todo/${id}`, {
+      isCompleted,employee,title:title,id:todoId, 
+    });
+    return response.data;
+  } catch (error) {
+   if (error.response.data !== undefined) {
+     return rejectWithValue({message: error.response.data});
+   }
+   return rejectWithValue({ message: error.message });
+  }
+ } 
+ )
+
 
 let todo = [];
 

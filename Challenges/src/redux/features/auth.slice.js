@@ -40,12 +40,13 @@ const userSlice = createSlice({
     [login.fulfilled]: (state, action) => {
         localStorage.setItem("AUTH_TOKEN",  action.payload.accessToken);
         localStorage.setItem("userEmail",  action.payload.user.email);
-
+  
       state.isAuth = true;
       state.loading = false;
       state.error = '';
       state.token = action.payload.accessToken;
       state.userData = action.payload.user;
+      window.location = '/dashboard';
     },
     [login.rejected]: (state, action) => {
       state.loading = false;

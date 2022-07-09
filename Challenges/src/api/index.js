@@ -5,6 +5,7 @@ export const api = axios.create({
   baseURL: "http://localhost:4000",
 });
 
+export const userEmail = localStorage.getItem("userEmail");
 export const register = createAsyncThunk(
   'user/register',
   async ({ name, email, password }, {rejectWithValue})=>{
@@ -13,6 +14,7 @@ export const register = createAsyncThunk(
         name,
         email,
         password,
+        todos:{},
         role: "employee",
       });
       return response.data;
@@ -34,16 +36,11 @@ export const login = createAsyncThunk('user/login',async({email, password}, {rej
     return response.data;
    } catch (error) {
     if (error.response.data !== undefined) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue({message: error.response.data});
     }
     return rejectWithValue({ message: error.message });
    }
 })
-
-export const g = async () => {
-  const response = await api.get("/users");
-  return response.data;
-};
 
 export const getUsers = createAsyncThunk('user/getAll', async(thunkApi, {rejectWithValue})=>{
   try {

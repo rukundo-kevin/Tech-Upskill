@@ -25,16 +25,16 @@ export const employeeColumns = [
 
 export const todoColumns = [
   {
-    label: "Id",
-    path: "id",
-  },
-  {
     label: "Title",
     path: "title",
   },
   {
     label: "Completed",
     path: "completed",
+  },
+  {
+    label: "Id",
+    path: "id",
   },
   {
     label: "Edit",

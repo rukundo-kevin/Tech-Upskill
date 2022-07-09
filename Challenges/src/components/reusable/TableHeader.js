@@ -8,7 +8,7 @@ const TableHeader = ({ columns }) => {
           <th
             key={index}
             scope="col"
-            className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+            className="text-sm font-medium text-gray-900 px-6 py-4 text-left font-bold"
           >
             {column.label}
           </th>

@@ -36,8 +36,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = loginState;
-     dispatch(login({ email, password }));
-     return navigate("/dashboard");
+    return dispatch(login({ email, password }));
   };
 
   return (

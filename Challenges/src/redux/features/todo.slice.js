@@ -1,12 +1,12 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getTodos } from '../../api/todoApi';
-
+import { getTodos, addNewTodo, removeTodo } from '../../api/todoApi';
 const initialState = {
   todos: [],
   loading: false,
   error: '',
+  addSuccess: false,
 };
 
 const todosSlicer = createSlice({
@@ -31,6 +31,34 @@ const todosSlicer = createSlice({
     [getTodos.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload.message;
+    },
+    [addNewTodo.pending]: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
+    [addNewTodo.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.error = '';
+      state.addSuccess = !state.addSuccess;
+    },
+    [addNewTodo.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+      state.addSuccess = false;
+    },
+    [removeTodo.pending]: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
+    [removeTodo.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.error = '';
+      state.addSuccess = !state.addSuccess;
+    },
+    [removeTodo.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+      state.addSuccess = false;
     },
   },
 });

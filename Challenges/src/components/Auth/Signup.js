@@ -7,6 +7,8 @@ import { FormAction, Input, Alert, FormExtra, Header } from "./";
 import { register } from "../../api/";
 import { registerFields } from "../../constants/formFields";
 
+import { registerFail } from "../../redux/features/auth.slice";
+
 const fields = registerFields;
 
 const fieldsState = {};
@@ -15,15 +17,14 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export const Signup = () => {
   const [signupState, setSignupState] = useState(fieldsState);
-  const [message, setMessage] = useState("");
-  const { error, isAuth} = useSelector((state) => state.user);
+  const { error, isAuth, message} = useSelector((state) => state.user);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
   useEffect(() => {
     setTimeout(() => {
-      if (localStorage.getItem("AUTH_TOKEN")) return navigate("../login");
+      if (localStorage.getItem("AUTH_TOKEN")) return navigate("./dashboard");
     }, 300);
   }, [message]);
 
@@ -34,11 +35,10 @@ export const Signup = () => {
     e.preventDefault();
     const { username, email, password, confirmPassword } = signupState;
     if (password !== confirmPassword) {
-      dispatch("Passwords do not match");
+      dispatch(registerFail("Passwords do not match"));
       return;
     }
-    register({ username, email, password })
-
+    dispatch(register({ name:username, email, password }));
   };
 
   return (

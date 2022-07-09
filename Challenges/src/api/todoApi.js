@@ -1,11 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, userEmail } from ".";
 
+
+
 export const getTodos = createAsyncThunk(
   'todos/fetchAll',
   async (thunkAPI, { rejectWithValue }) => {
     try {
       const response = await api.get("/todo");
+      const response2 = await api.get(`/todo?email=${userEmail}`);
        response.data.forEach(el => delete el['employee']);
       return response.data;
     } catch (error) {

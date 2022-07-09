@@ -14,7 +14,6 @@ export const register = createAsyncThunk(
         name,
         email,
         password,
-        todos:{},
         role: "employee",
       });
       return response.data;

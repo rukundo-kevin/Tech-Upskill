@@ -18,6 +18,13 @@
       "email": "admin@gmail.com",
       "password": "$2a$10$RK8GdfnHGzvR87c62yNf9u.l6Hsh3ifouF4AaV65VChMxv6r5ByH6",
       "role": "employee"
+    },
+    {
+      "email": "new@gmail.com",
+      "password": "$2a$10$7FwVvq8L4A9xTfVPlJPNjOUmvoga0TPUZDuZDrYP0vs/TfUJf6Tk2",
+      "name": "New User",
+      "role": "employee",
+      "id": 5
     }
   ],
   "todo": [

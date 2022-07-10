@@ -9,6 +9,8 @@ import AllRoutes from "./routes";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render( <Provider store={store}>
+root.render(
+   <Provider store={store}>
     <AllRoutes />
-  </Provider>);
+  </Provider>
+  );

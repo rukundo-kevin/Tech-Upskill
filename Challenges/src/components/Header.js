@@ -11,7 +11,7 @@ const LandingHeader = ({ handleLogout }) => {
       >
         <div className="w-max text-white">
           <p className="text-x">
-            <span className="text-2xl t">Employee System </span>
+            <span className="text-2xl t"><span className="text-bold px-1  text-black bg-white">K</span> lab Employee System </span>
           </p>
         </div>
         <div className="flex list-none w-1/2 justify-center items-center text-white cursor-pointer ">

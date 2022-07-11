@@ -8,16 +8,18 @@
   ],
   "users": [
     {
-      "id": 3,
       "email": "rukundo@gmail.com",
       "password": "$2a$10$yQv7Gs/a1DBV0G.G/DjoiuIvup7aPx3N1Py9ahPnc8OllpTjQE5pC",
-      "role": "employee"
+      "name":"Rukundo",
+      "role": "employee",
+      "id": 3
     },
     {
-      "id": 4,
       "email": "admin@gmail.com",
       "password": "$2a$10$RK8GdfnHGzvR87c62yNf9u.l6Hsh3ifouF4AaV65VChMxv6r5ByH6",
-      "role": "employee"
+      "name":"Admin",
+      "role": "admin",
+      "id": 4
     },
     {
       "email": "new@gmail.com",
@@ -30,7 +32,7 @@
   "todo": [
     {
       "isCompleted": false,
-      "employee": "rukundo@gmail.com",
+      "employee": "new@gmail.com",
       "title": null,
       "id": 8
     },

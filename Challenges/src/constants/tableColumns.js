@@ -1,9 +1,5 @@
 export const employeeColumns = [
   {
-    label: "Id",
-    path: "id",
-  },
-  {
     label: "Name",
     path: "name",
   },
@@ -14,6 +10,14 @@ export const employeeColumns = [
   {
     label: "Position",
     path: "position",
+  },
+  {
+    label: "Id",
+    path: "id",
+  },
+  {
+    label:"Tasks",
+    path:"task"
   },
   {
     label: "Update",

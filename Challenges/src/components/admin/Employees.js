@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
 import { getUsers } from "../../api";
 import { employeeColumns } from "../../constants/tableColumns";
@@ -25,10 +25,10 @@ const Employee = () => {
         Add New
       </Button>
       <Button onClick={undefined} customClass="ml-4 bg-green-500 hover:bg-green-600 w-24">
-      <CSVLink data={employees} filename="employees">Save Csv </CSVLink>
+      <CSVLink data={employees} filename="employees">Export Csv </CSVLink>
       </Button>
       <Button onClick={undefined} customClass="ml-4 bg-teal-500 hover:bg-teal-600 w-24">
-        Save Pdf 
+        Export Pdf 
       </Button>
       </div>
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">

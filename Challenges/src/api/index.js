@@ -49,13 +49,12 @@ const fetchTodoByUser = async(employee) =>{
 export const getUsers = createAsyncThunk('user/getAll', async(thunkApi, {rejectWithValue})=>{
   try {
     const response = await api.get("/users");
-    // const {data} = response;
-    // response.data.forEach(el => delete el['password']);
-    // for (let i = 0; i < data.length; i++) {
-    //   const todos = await fetchTodoByUser(data[i].email);
-    //   const title = {...todos}
-    //   data[i] = {...data[i], tasks:{...title}}
-    // }
+    const {data} = response;
+    response.data.forEach(el => delete el['password']);
+    for (let i = 0; i < data.length; i++) {
+      const todos = await fetchTodoByUser(data[i].email);
+      data[i] = {...data[i], tasks:todos}
+    }
     return response.data;
   } catch (error) {
     if (error.response.data !== undefined) {

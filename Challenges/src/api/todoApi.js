@@ -71,7 +71,3 @@ export const removeTodo = createAsyncThunk('todos/remove', async (id, {rejectWit
  } 
  )
 
-
-let todo = [];
-
-export default todo;
